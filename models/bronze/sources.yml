@@ -1,0 +1,20 @@
+sources:
+    - name: nfl
+      description: Too be set
+      database: raw
+      schema: nfl
+      tables:
+          - name: basic_stats
+            description: Too be set
+          - name: career_stats_fumbles
+            description: Too be set
+          - name: career_stats_passing
+            description: Too be set
+          - name: career_stats_receiving
+            description: Too be set
+          - name: career_stats_rushing
+            description: Too be set
+          - name: game_logs_quarterback
+            description: Too be set
+          - name: game_logs_runningback
+            description: Too be set
