@@ -1,0 +1,196 @@
+version: 2
+
+models:
+  - name: slv_career_stats
+    description: "Merged passing + rushing player statistics with cleaned numeric fields."
+
+    columns:
+      - name: player_id
+        description: "Unique identifier for the player."
+        tests:
+          - not_null
+
+      - name: name
+        description: "Player full name."
+
+      - name: position
+        description: "Player position abbreviation (e.g., QB, RB, WR). Can be null."
+
+      - name: year
+        description: "Season year."
+        tests:
+          - not_null
+
+      - name: team
+        description: "Team abbreviation."
+
+      - name: games_played
+        description: "Number of games played by the player."
+
+      - name: passes_attempted
+        description: "Number of pass attempts."
+
+      - name: passes_completed
+        description: "Number of completed passes."
+
+      - name: passing_yards
+        description: "Total passing yards."
+
+      - name: passing_tds
+        description: "Passing touchdowns."
+
+      - name: passes_ints
+        description: "Interceptions thrown."
+
+      - name: longest_pass
+        description: "Longest completed pass."
+
+      - name: passes_longer_than_20_yards
+        description: "Passes longer than 20 yards."
+
+      - name: passes_longer_than_40_yards
+        description: "Passes longer than 40 yards."
+
+      - name: sacks
+        description: "Times sacked."
+
+      - name: sacked_yards_lost
+        description: "Yards lost from sacks."
+
+      - name: passer_rating
+        description: "Passer rating value."
+
+      - name: rushing_attempts
+        description: "Rushing attempts."
+
+      - name: rushing_yards
+        description: "Total rushing yards."
+
+      - name: rushing_tds
+        description: "Rushing touchdowns."
+
+      - name: longest_run
+        description: "Longest rushing attempt."
+
+      - name: rushing_first_downs
+        description: "Rushing plays resulting in first down."
+
+      - name: rushing_more_than_20_yards
+        description: "Rushes longer than 20 yards."
+
+      - name: rushing_more_than_40_yards
+        description: "Rushes longer than 40 yards."
+
+      - name: fumbles
+        description: "Total fumbles."
+
+  - name: game_logs
+    description: "Merged game logs for quarterbacks and running backs with cleaned numeric stats."
+    columns:
+      - name: player_id
+        description: "Unique identifier for the player."
+        tests:
+          - not_null
+
+      - name: name
+        description: "Player full name."
+
+      - name: position
+        description: "Player position. Defaults to 'QB' for quarterbacks if null."
+
+      - name: year
+        description: "Season year."
+
+      - name: game_date
+        description: "Date of the game (derived from month/day + year)."
+        tests:
+          - not_null
+
+      - name: season
+        description: "Season identifier, usually same as year."
+
+      - name: home_away
+        description: "Indicates whether the game was home or away."
+        tests:
+          - not_null
+
+      - name: opponent
+        description: "Opponent team abbreviation."
+        tests:
+          - not_null
+
+      - name: outcome
+        description: "Game outcome (e.g., W/L)."
+        tests:
+          - not_null
+
+      - name: score
+        description: "Game score."
+        tests:
+          - not_null
+
+      - name: game_played
+        description: "Boolean flag if the player appeared in the game."
+
+      - name: game_started
+        description: "Boolean flag if the player started the game."
+
+      # Passing stats
+      - name: passes_attempted
+        description: "Number of pass attempts."
+
+      - name: passes_completed
+        description: "Number of completed passes."
+
+      - name: passing_yards
+        description: "Total passing yards."
+
+      - name: passing_tds
+        description: "Passing touchdowns."
+
+      - name: passes_ints
+        description: "Interceptions thrown."
+
+      - name: sacks
+        description: "Times sacked."
+
+      - name: sacked_yards_lost
+        description: "Yards lost from sacks."
+
+      - name: passer_rating
+        description: "Passer rating (2 decimal points)."
+
+      # Rushing stats
+      - name: rushing_attempts
+        description: "Number of rushing attempts."
+
+      - name: rushing_yards
+        description: "Total rushing yards."
+
+      - name: rushing_tds
+        description: "Rushing touchdowns."
+
+      - name: longest_run
+        description: "Longest rushing attempt."
+
+      - name: rushing_first_downs
+        description: "Rushing plays resulting in first down."
+
+      - name: fumbles
+        description: "Total fumbles."
+
+      - name: fumbles_lost
+        description: "Fumbles lost."
+
+      # Receiving stats
+      - name: receptions
+        description: "Number of receptions."
+
+      - name: receiving_yards
+        description: "Total receiving yards."
+
+      - name: receiving_tds
+        description: "Receiving touchdowns."
+
+      - name: longest_reception
+        description: "Longest reception."
