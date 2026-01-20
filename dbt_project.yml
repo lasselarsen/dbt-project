@@ -33,6 +33,11 @@ clean-targets:         # directories to be removed by `dbt clean`
 # using the `{{ config(...) }}` macro.
 
 models:
-  fl_project:
+  nfl_project:
+    +database: analytics          # Snowflake database for all models
     bronze:
-      +materialized: view
+      +schema: bronze             # All models in models/bronze → schema "bronze"
+      +materialized: table
+    silver:
+      +schema: silver             # All models in models/silver → schema "silver"
+      +materialized: table

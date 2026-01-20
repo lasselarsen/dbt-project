@@ -2,7 +2,7 @@
 version: 2
 
 models:
-    - name: basic_stats
+    - name: brz_basic_stats
       description: "Basic stats"
       columns:
           - name: player_id
@@ -10,14 +10,14 @@ models:
             tests:
                 - unique
                 - not_null
-    - name: career_stats_fumbles
+    - name: brz_career_stats_fumbles
       description: ""
       columns:
           - name: player_id
             description: ""
             tests:
                 - not_null
-    - name: career_stats_passing
+    - name: brz_career_stats_passing
       description: ""
       columns:
           - name: player_id
@@ -31,21 +31,21 @@ models:
             description: ""
             tests:
                 - not_null
-    - name: career_stats_rushing
+    - name: brz_career_stats_rushing
       description: ""
       columns:
           - name: player_id
             description: ""
             tests:
                 - not_null
-    - name: game_logs_quarterback
+    - name: brz_game_logs_quarterback
       description: ""
       columns:
           - name: player_id
             description: ""
             tests:
                 - not_null
-    - name: game_logs_runningback
+    - name: brz_game_logs_runningback
       description: ""
       columns:
           - name: player_id
