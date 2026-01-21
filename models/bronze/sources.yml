@@ -1,20 +1,20 @@
 sources:
     - name: nfl
-      description: Too be set
+      description: NFL Statistics
       database: raw
       schema: nfl
       tables:
           - name: basic_stats
-            description: Too be set
+            description: the basic statistics provided for each player.
           - name: career_stats_fumbles
-            description: Too be set
+            description: statistics gathered for each player
           - name: career_stats_passing
-            description: Too be set
+            description: statistics gathered for each player
           - name: career_stats_receiving
-            description: Too be set
+            description: statistics gathered for each player
           - name: career_stats_rushing
-            description: Too be set
+            description: statistics gathered for each player
           - name: game_logs_quarterback
-            description: Too be set
+            description: game logs for each player.
           - name: game_logs_runningback
-            description: Too be set
+            description: game logs for each player.
