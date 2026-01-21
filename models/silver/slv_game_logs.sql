@@ -15,6 +15,8 @@ WITH quaterback AS (
         , opponent
         , outcome
         , score
+        , CAST(TRIM(SPLIT_PART(score, 'to', 1)) AS INT)                             AS team_point_scored
+        , CAST(TRIM(SPLIT_PART(score, 'to', 2)) AS INT)                             AS team_point_conceded
         , IFF(games_played = 1, true, false)                                        AS game_played
         , IFF(games_started = '1', true, false)                                     AS game_started
         , CAST(NULLIF(REGEXP_REPLACE(passes_attempted, '[^0-9]', ''), '') AS INT)   AS passes_attempted
@@ -24,10 +26,11 @@ WITH quaterback AS (
         , CAST(NULLIF(REGEXP_REPLACE(ints, '[^0-9]', ''), '') AS INT)               AS passes_ints
         , CAST(NULLIF(REGEXP_REPLACE(sacks, '[^0-9]', ''), '') AS INT)              AS sacks
         , CAST(NULLIF(REGEXP_REPLACE(sacked_yards_lost, '[^0-9]', ''), '') AS INT)  AS sacked_yards_lost
-        , ROUND(CAST(passer_rating AS NUMBER(10,2)), 2)                             AS passer_rating
+        , CAST(passer_rating AS INT)                                                AS passer_rating
         , CAST(NULLIF(REGEXP_REPLACE(rushing_attempts, '[^0-9]', ''), '') AS INT)   AS rushing_attempts
         , CAST(NULLIF(REGEXP_REPLACE(rushing_yards, '[^0-9]', ''), '') AS INT)      AS rushing_yards
         , CAST(NULLIF(REGEXP_REPLACE(rushing_tds, '[^0-9]', ''), '') AS INT)        AS rushing_tds
+        , NULL                                                                      AS longest_run
         , CAST(NULLIF(REGEXP_REPLACE(fumbles, '[^0-9]', ''), '') AS INT)            AS fumbles
         , CAST(NULLIF(REGEXP_REPLACE(fumbles_lost, '[^0-9]', ''), '') AS INT)       AS fumbles_lost
         , NULL                                                                      AS receptions
@@ -48,11 +51,14 @@ WITH quaterback AS (
         , opponent
         , outcome
         , score
+        , CAST(TRIM(SPLIT_PART(score, 'to', 1)) AS INT)                                 AS team_point_scored
+        , CAST(TRIM(SPLIT_PART(score, 'to', 2)) AS INT)                                 AS team_point_conceded
         , IFF(games_played = 1, true, false)                                            AS game_played
         , IFF(games_started = '1', true, false)                                         AS game_started
         , NULL                                                                          AS passes_attempted
         , NULL                                                                          AS passes_completed
         , NULL                                                                          AS passing_yards
+        , NULL                                                                          AS passing_tds
         , NULL                                                                          AS passes_ints
         , NULL                                                                          AS sacks
         , NULL                                                                          AS sacked_yards_lost

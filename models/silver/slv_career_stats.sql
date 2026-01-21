@@ -11,6 +11,7 @@ WITH passing AS (
         , position
         , year
         , team
+        , 'passing'                                                                             AS type
         , CAST(games_played AS INT)                                                             AS games_played
         , CAST(NULLIF(REGEXP_REPLACE(passes_attempted, '[^0-9]', ''), '') AS INT)               AS passes_attempted
         , CAST(NULLIF(REGEXP_REPLACE(passes_completed, '[^0-9]', ''), '') AS INT)               AS passes_completed
@@ -22,7 +23,7 @@ WITH passing AS (
         , CAST(NULLIF(REGEXP_REPLACE(passes_longer_than_40_yards, '[^0-9]', ''), '') AS INT)    AS passes_longer_than_40_yards
         , CAST(NULLIF(REGEXP_REPLACE(sacks, '[^0-9]', ''), '') AS INT)                          AS sacks
         , CAST(NULLIF(REGEXP_REPLACE(sacked_yards_lost, '[^0-9]', ''), '') AS INT)              AS sacked_yards_lost
-        , ROUND(CAST(passer_rating AS NUMBER(10,2)), 2)                                         AS passer_rating
+        , CAST(passer_rating AS INT)                                                            AS passer_rating
     FROM {{ ref("brz_career_stats_passing") }}
 
 ), rushing AS (
@@ -33,6 +34,7 @@ WITH passing AS (
         , position
         , year
         , team
+        , 'rushing'                                                                         AS type
         , CAST(games_played AS INT)                                                         AS games_played
         , CAST(NULLIF(REGEXP_REPLACE(rushing_attempts, '[^0-9]', ''), '') AS INT)           AS rushing_attempts
         , CAST(NULLIF(REGEXP_REPLACE(rushing_yards, '[^0-9]', ''), '') AS INT)              AS rushing_yards
@@ -54,6 +56,7 @@ merged AS (
         , COALESCE(p.position, r.position)          AS position
         , COALESCE(p.year, r.year)                  AS year
         , COALESCE(p.team, r.team)                  AS team
+        , COALESCE(p.type, r.type)                  AS type
         , COALESCE(p.games_played, r.games_played)  AS games_played
 
         -- passing
