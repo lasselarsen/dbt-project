@@ -1,0 +1,155 @@
+version: 2
+
+models:
+  - name: gld_player
+    description: "Player table containing information about each plyaer"
+
+    columns:
+      - name: player_id
+        description: "Unique identifier for the player."
+        tests:
+          - not_null
+
+      - name: full_name
+        description: "Player full name."
+
+      - name: position
+        description: "Player position abbreviation (e.g., QB, RB, WR). Can be null."
+
+      - name: birthday
+        description: "Date when the player was born"
+
+      - name: age
+        description: "Current age of the player"
+
+      - name: birth_place
+        description: "Where the player is born. Can be city and state, city and country, or just country"
+
+      - name: birth_place_state
+        description: "If there is a state, then this is used otherwise it is considered to be an international player"
+
+      - name: current_status
+        description: "Current status of the player, like retired or active, but also if they are unasigned, injured or suspended."
+
+      - name: current_team
+        description: "The team which the player is currently connected to. Is null if the player is retired"
+
+      - name: height_inches
+        description: "Players height in inches"
+
+      - name: height_cm
+        description: "Players height in centimeters"
+
+      - name: weight_lbs
+        description: "Players weight in lbs"
+
+      - name: weight_kg
+        description: "Players weight in kilograms"
+
+      - name: college
+        description: "The college where the player played"
+
+      - name: high_school
+        description: "The highschool were the player attended"
+
+      - name: high_school_location
+        description: "City and or state where the highcshool is located"
+
+      - name: position
+        description: "Players position on the field"
+
+      - name: number
+        description: "The player's current playing number. Is null if player is retired"
+
+      - name: start_year
+        description: "The year when the player started his nfl career"
+
+      - name: end_year
+        description: "The year when the player ended his nfl career. Is null if still active"
+      
+      - name: experience
+        description: "Number of seasons in the nfl. Rookie means first season."
+
+  - name: gld_career_stats
+    description: "Table that contains yearly player stats."
+
+    columns:
+      - name: player_id
+        description: "Unique identifier for the player."
+        tests:
+          - not_null
+      
+      - name: position
+        description: "the position the player played on the field that year"
+
+      - name: year
+        description: "The year from which the stats recorded."
+        tests:
+          - not_null
+      
+      - name: team
+        description: "The team that the player was playing for that year."
+        tests:
+          - not_null
+      
+      - name: type
+        description: "The type of stat, meaning either passing, rushing, receiving etc."
+        tests:
+          - not_null
+
+      - name: stat_name
+        description: "Name of the stat."
+
+      - name: stat_value
+        description: "The value of the related stat."
+
+  - name: gld_game_logs
+    description: "Table that contains game logs with player stats and game stats."
+
+    columns:
+      - name: player_id
+        description: "Unique identifier for the player."
+        tests:
+          - not_null
+      
+      - name: position
+        description: "the position the player played on the field that year"
+
+      - name: game_date
+        description: "The ate of the game."
+        tests:
+          - not_null
+      
+      - name: game_played
+        description: "True if the player played in the game. If false, the player sat the hole game on the bench."
+
+      - name: game_started
+        description: "True if the player started the game."
+        tests:
+          - not_null
+      
+      - name: season
+        description: "Indicates what type of game is was based on the three seasons in a year, Preseason, Regular Season, Postseason, and lastly Pro Bowl."
+        tests:
+          - not_null
+      
+      - name: home_away
+        description: "Indicates if the players team as the home team or away team."
+        tests:
+          - not_null
+      
+      - name: opponent
+        description: "The team that the player was playing againt in the game. is indicated by the three letter abbrivation."
+        tests:
+          - not_null
+      
+      - name: outcome
+        description: "Indicates if the players team won the game or not with a W for win and L for loss."
+        tests:
+          - not_null
+
+      - name: log_name
+        description: "Name of the log."
+
+      - name: log_value
+        description: "The value of the related log."

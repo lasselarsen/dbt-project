@@ -41,3 +41,6 @@ models:
     silver:
       +schema: silver             # All models in models/silver → schema "silver"
       +materialized: table
+    gold:
+      +schema: gold             # All models in models/gold → schema "gold"
+      +materialized: table
